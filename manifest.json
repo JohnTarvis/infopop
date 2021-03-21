@@ -13,9 +13,6 @@
       "js": ["infopop.js","axios.js"]
     }
   ],
-  "web_accessible_resources": [
-    "images/*"
-  ],
   "permissions": [
     "activeTab",
     "*://www.googleapis.com/*",
