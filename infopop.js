@@ -1,46 +1,12 @@
 
 const additions = `
-<style>
-#tooltip {
-  position:absolute;
-  display:none;
-  border:grey solid 1px;
-  background:white;
-}
-#cal1{
-  position:absolute;
-  height:0px;
-  width:0px;
-  top:100px;
-  left:100px;
-  overflow:none;
-  z-index:-100;
-}
-#cal2{
-  position:absolute;
-  height:0px;
-  width:0px;
-  top:0px;
-  left:0px;
-  overflow:none;
-  z-index:-100;
-}
-  
-.thumbnail{
-	height:50px;
-	width:50px;	
-}
-</style>
 <div id="cal1">&nbsp;</div>
 <div id="cal2">&nbsp;</div>
-<div id="tooltip">
-  
-</div>
+<div id="tooltip"></div>
 <script>axios.js</script>
 `;
 
 //<img width='100' height='100' id='infopop'>
-
 
 document.body.innerHTML += additions;
 
@@ -48,6 +14,17 @@ const TEST = '123abc';
 const GOOGLE_API_URL = 'https://www.googleapis.com/customsearch/v1';
 const API_KEY = 'AIzaSyDOW-85iv_Lg9oELduvYS2Fl0bmuLAK5E0';
 const CS = '834ea7cbdfc762036';
+
+/////////////////////////////////////////////////
+
+// Include the external CSS file
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = browser.extension.getURL('infopop.css'); // Assuming your CSS file is in the extension root directory
+document.head.appendChild(link);
+
+/////////////////////////////////////////////////
 
 var ele = document.getElementById('tooltip');
 var sel = window.getSelection();
@@ -73,8 +50,8 @@ window.addEventListener('mouseup', async function () {
         var r = sel.getRangeAt(0).getBoundingClientRect();
         var rb1 = rel1.getBoundingClientRect();
         var rb2 = rel2.getBoundingClientRect();
-        ele.style.top = (r.bottom - rb2.top)*100/(rb1.top-rb2.top) + 'px'; //this will place ele below the selection
-        ele.style.left = (r.left - rb2.left)*100/(rb1.left-rb2.left) + 'px'; //this will align the right edges together
+        ele.style.top = (r.bottom - rb2.top)*100/(rb1.top-rb2.top) + 'px'; 
+        ele.style.left = (r.left - rb2.left)*100/(rb1.left-rb2.left) + 'px'; 
         ele.style.display = 'block';
     }
 });
